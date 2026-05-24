@@ -315,6 +315,13 @@ input {
   color: var(--ink);
 }
 
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  min-height: auto;
+  accent-color: var(--accent);
+}
+
 select:focus,
 input:focus,
 button:focus-visible,
