@@ -204,6 +204,7 @@ main {
 }
 
 .notice,
+.rules,
 .sources,
 footer {
   padding: 18px 20px;
@@ -214,6 +215,35 @@ footer {
 
 .notice {
   color: #3f4656;
+}
+
+.rules {
+  margin-top: 22px;
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.rules-grid article {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.rules-grid h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.rules-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .workspace {
@@ -519,6 +549,10 @@ footer p {
   .doc-list {
     grid-template-columns: 1fr;
   }
+
+  .rules-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 620px) {
@@ -528,7 +562,8 @@ footer p {
   }
 
   .grid-two,
-  .insight-grid {
+  .insight-grid,
+  .rules-grid {
     grid-template-columns: 1fr;
   }
 
