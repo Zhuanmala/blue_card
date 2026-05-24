@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="德国欧盟蓝卡资格自测与申请材料准备助手，基于 2026 年公开官方信息。"
+    />
+    <title>德国蓝卡资格自测与材料助手</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">DE</span>
+        <div>
+          <p class="eyebrow">德国 EU Blue Card</p>
+          <h1>蓝卡资格自测与材料助手</h1>
+        </div>
+      </div>
+      <nav class="top-actions" aria-label="页面操作">
+        <a href="#checker">开始自测</a>
+        <a href="#documents">材料清单</a>
+        <button id="printBtn" type="button">打印结果</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="status-pill">已按 2026 年德国蓝卡薪资门槛更新</p>
+          <h2>用 5 分钟判断你是否大概率具备德国蓝卡申请条件。</h2>
+          <p>
+            输入岗位、薪资、学历和特殊情形后，页面会给出资格判断、风险点、下一步建议，并自动生成适合你的材料清单。
+          </p>
+        </div>
+        <div class="threshold-panel" aria-label="2026 年薪资门槛">
+          <div>
+            <span>普通岗位</span>
+            <strong>€50,700</strong>
+            <small>税前年薪</small>
+          </div>
+          <div>
+            <span>低门槛情形</span>
+            <strong>€45,934.20</strong>
+            <small>短缺岗位 / 毕业三年内 / IT 经验路线</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice" role="note">
+        <strong>重要提示：</strong>
+        本工具用于申请准备和自查，不构成法律意见，也不能替代德国使领馆、外管局或联邦就业局的正式审核。规则会按年份和个案变化，提交前请复核官方来源。
+      </section>
+
+      <section class="workspace" id="checker">
+        <form id="blueCardForm" class="form-panel">
+          <div class="section-title">
+            <p class="eyebrow">Step 1</p>
+            <h2>基本条件</h2>
+          </div>
+
+          <fieldset>
+            <legend>你的国籍身份</legend>
+            <label class="choice">
+              <input type="radio" name="citizenship" value="nonEu" checked />
+              <span>非欧盟 / 非欧洲经济区 / 非瑞士公民</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="citizenship" value="eu" />
+              <span>欧盟、欧洲经济区或瑞士公民</span>
+            </label>
+          </fieldset>
+
+          <div class="grid-two">
+            <label>
+              德国工作合同或正式 offer
+              <select name="jobOffer">
+                <option value="yes">已有</option>
+                <option value="soon">正在谈，尚未签</option>
+                <option value="no">没有</option>
+              </select>
+            </label>
+            <label>
+              合同期限
+              <select name="contractMonths">
+                <option value="6">至少 6 个月</option>
+                <option value="1">少于 6 个月</option>
+                <option value="0">不确定</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid-two">
+            <label>
+              税前年薪 EUR
+              <input
+                type="number"
+                name="salary"
+                min="0"
+                step="100"
+                placeholder="例如 52000"
+                inputmode="decimal"
+              />
+            </label>
+            <label>
+              岗位类别
+              <select name="occupation">
+                <option value="standard">普通岗位</option>
+                <option value="shortage">短缺岗位</option>
+                <option value="it">IT 专家</option>
+                <option value="regulated">受监管职业，例如医生、教师、药剂师</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="section-title compact">
+            <p class="eyebrow">Step 2</p>
+            <h2>资格路径</h2>
+          </div>
+
+          <fieldset>
+            <legend>你准备走哪条路径？</legend>
+            <label class="choice">
+              <input type="radio" name="path" value="degree" checked />
+              <span>大学学历路径：有德国认可或可比的大学学历</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="path" value="recentGraduate" />
+              <span>新入职者路径：最高学历取得时间不超过 3 年</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="path" value="itExperience" />
+              <span>无学历 IT 路径：近 7 年内至少 3 年高水平 IT 经验</span>
+            </label>
+          </fieldset>
+
+          <div class="grid-two">
+            <label>
+              学历认可状态
+              <select name="degreeStatus">
+                <option value="recognized">已确认认可或可比</option>
+                <option value="checking">正在查 Anabin / ZAB</option>
+                <option value="notRecognized">无法证明认可</option>
+                <option value="noDegree">没有大学学历</option>
+              </select>
+            </label>
+            <label>
+              工作是否匹配资格或经验
+              <select name="jobMatch">
+                <option value="yes">匹配</option>
+                <option value="partial">大致相关，仍需解释</option>
+                <option value="no">不匹配</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid-two">
+            <label>
+              受监管职业执业许可
+              <select name="license">
+                <option value="notNeeded">不需要</option>
+                <option value="ready">已取得或已有明确承诺</option>
+                <option value="missing">需要但尚未取得</option>
+              </select>
+            </label>
+            <label>
+              申请地点
+              <select name="location">
+                <option value="outside">德国境外申请签证</option>
+                <option value="inside">德国境内换发居留</option>
+                <option value="unknown">还不确定</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button type="submit" class="primary">生成判断</button>
+            <button type="button" id="resetBtn">重新填写</button>
+          </div>
+        </form>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="score-card" id="scoreCard">
+            <p class="eyebrow">Result</p>
+            <h2 id="resultTitle">填写信息后生成判断</h2>
+            <p id="resultSummary">结果会显示在这里，包括薪资门槛、可能需要 BA 同意的情形和材料准备重点。</p>
+          </div>
+
+          <div class="meter" aria-label="准备进度">
+            <span id="meterBar"></span>
+          </div>
+
+          <div class="insight-grid">
+            <div>
+              <span>适用门槛</span>
+              <strong id="thresholdText">待计算</strong>
+            </div>
+            <div>
+              <span>薪资差额</span>
+              <strong id="gapText">待计算</strong>
+            </div>
+          </div>
+
+          <div class="result-list">
+            <h3>需要重点处理</h3>
+            <ul id="issuesList"></ul>
+          </div>
+
+          <div class="result-list">
+            <h3>下一步</h3>
+            <ul id="nextStepsList"></ul>
+          </div>
+        </aside>
+      </section>
+
+      <section class="documents" id="documents">
+        <div class="section-title">
+          <p class="eyebrow">Preparation</p>
+          <h2>个性化材料清单</h2>
+          <p>勾选后会保存在当前浏览器，方便你下次继续整理。</p>
+        </div>
+        <div class="doc-toolbar">
+          <button type="button" id="copyChecklistBtn">复制清单</button>
+          <button type="button" id="clearChecksBtn">清空勾选</button>
+        </div>
+        <div id="documentList" class="doc-list"></div>
+      </section>
+
+      <section class="sources">
+        <div class="section-title">
+          <p class="eyebrow">Sources</p>
+          <h2>官方信息来源</h2>
+        </div>
+        <ul>
+          <li>
+            <a href="https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card" target="_blank" rel="noreferrer">
+              Make it in Germany: EU Blue Card
+            </a>
+          </li>
+          <li>
+            <a href="https://www.bundesanzeiger.de/pub/publication/REViP4bN6jVdpGxPaiQ/content/REViP4bN6jVdpGxPaiQ/BAnz%20AT%2018.12.2025%20B3.pdf?inline=" target="_blank" rel="noreferrer">
+              Bundesanzeiger: 2026 年蓝卡最低税前年薪公告
+            </a>
+          </li>
+          <li>
+            <a href="https://www.germany.info/resource/blob/2435484/8b7b0fa11193ba17e59c48e0d196ccba/eu-blue-card-data.pdf" target="_blank" rel="noreferrer">
+              German Missions in the United States: EU Blue Card checklist
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>最后信息核对：2026-05-24。页面仅作自测与材料准备辅助。</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
