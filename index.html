@@ -21,6 +21,7 @@
       </div>
       <nav class="top-actions" aria-label="页面操作">
         <a href="#checker">开始自测</a>
+        <a href="#rules">职业要求</a>
         <a href="#documents">材料清单</a>
         <button id="printBtn" type="button">打印结果</button>
       </nav>
@@ -52,6 +53,39 @@
       <section class="notice" role="note">
         <strong>重要提示：</strong>
         本工具用于申请准备和自查，不构成法律意见，也不能替代德国使领馆、外管局或联邦就业局的正式审核。规则会按年份和个案变化，提交前请复核官方来源。
+      </section>
+
+      <section class="rules" id="rules">
+        <div class="section-title">
+          <p class="eyebrow">Rules</p>
+          <h2>职业种类和工作年限怎么影响蓝卡？</h2>
+        </div>
+        <div class="rules-grid">
+          <article>
+            <h3>职业不是封闭清单</h3>
+            <p>
+              普通蓝卡并不只限 IT 或短缺职业。核心是德国岗位属于合格工作，且岗位内容与大学学历或符合条件的 IT 经验相匹配。
+            </p>
+          </article>
+          <article>
+            <h3>短缺职业影响薪资门槛</h3>
+            <p>
+              短缺职业可以用较低年薪门槛，但通常需要联邦就业局 BA 同意或审核。非短缺职业仍可申请，只是通常适用普通薪资门槛。
+            </p>
+          </article>
+          <article>
+            <h3>学历路线通常不要求年限</h3>
+            <p>
+              如果走认可大学学历路线，官方核心条件是学历、岗位匹配、合同期限和薪资；并没有统一的最低工作年限要求。
+            </p>
+          </article>
+          <article>
+            <h3>无学历 IT 路线要求经验</h3>
+            <p>
+              无正式学历的 IT 专家或 IT 管理者路线，需要过去 7 年内至少 3 年 IT 工作经验，且经验达到大学水平并为德国岗位所需。
+            </p>
+          </article>
+        </div>
       </section>
 
       <section class="workspace" id="checker">
@@ -152,6 +186,26 @@
                 <option value="yes">匹配</option>
                 <option value="partial">大致相关，仍需解释</option>
                 <option value="no">不匹配</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid-two">
+            <label>
+              最高学历取得时间
+              <select name="graduationAge">
+                <option value="over3">超过 3 年或不适用</option>
+                <option value="within3">3 年内</option>
+                <option value="unknown">不确定</option>
+              </select>
+            </label>
+            <label>
+              过去 7 年内 IT 工作经验
+              <select name="itYears">
+                <option value="na">不适用</option>
+                <option value="3plus">至少 3 年</option>
+                <option value="less3">少于 3 年</option>
+                <option value="unknown">不确定</option>
               </select>
             </label>
           </div>

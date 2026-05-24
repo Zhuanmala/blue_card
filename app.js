@@ -56,7 +56,7 @@ const conditionalDocuments = {
   },
   recentGraduate: {
     group: "毕业三年内",
-    items: ["最高学历毕业日期证明", "能说明当前岗位为入职早期职业阶段的材料"],
+    items: ["最高学历毕业日期证明", "能说明当前岗位为入职早期职业阶段的材料", "BA 可能审核所需的岗位与薪资材料"],
   },
   itExperience: {
     group: "无学历 IT 路径",
@@ -168,13 +168,32 @@ function evaluate(data) {
     }
   }
 
+  if (data.path === "degree" && data.graduationAge === "within3" && salary >= THRESHOLDS.reduced && salary < THRESHOLDS.standard) {
+    nextSteps.push("你毕业未满 3 年，若年薪低于普通门槛，可评估新入职者低门槛路径。");
+  }
+
+  if (data.path === "recentGraduate") {
+    if (data.graduationAge !== "within3") {
+      score -= data.graduationAge === "unknown" ? 12 : 30;
+      issues.push("新入职者低门槛路径要求最高学历或同等资格取得时间不超过 3 年。");
+    }
+    nextSteps.push("新入职者路径可适用于所有职业类别，但通常需要 BA 同意。");
+  }
+
   if (data.path === "itExperience") {
     if (data.occupation !== "it") {
       score -= 18;
       issues.push("无学历经验路径通常要求具体 IT 专家岗位。");
     }
+    if (data.itYears !== "3plus") {
+      score -= data.itYears === "unknown" ? 16 : 34;
+      issues.push("无学历 IT 蓝卡路径要求过去 7 年内至少 3 年 IT 工作经验。");
+    }
+    if (data.degreeStatus !== "noDegree" && data.degreeStatus !== "notRecognized") {
+      nextSteps.push("如已有可认可大学学历，也可以同步评估学历路径；学历路径通常不要求最低工作年限。");
+    }
     if (data.degreeStatus !== "noDegree") {
-      nextSteps.push("如已有大学学历，也可以同步评估学历路径，通常证明链更清晰。");
+      nextSteps.push("IT 经验材料要说明经验达到大学水平，并且是德国岗位要求的一部分。");
     }
   }
 
