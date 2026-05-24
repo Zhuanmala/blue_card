@@ -4,7 +4,8 @@ const THRESHOLDS = {
 };
 
 const lowThresholdReasons = {
-  shortage: "短缺岗位",
+  shortage: "短缺职业",
+  it: "IT 专家或 IT 管理岗位",
   recentGraduate: "毕业三年内的新入职者",
   itExperience: "无学历 IT 专家路径",
 };
@@ -22,18 +23,26 @@ const baseDocuments = [
   {
     group: "工作与薪资",
     items: [
-      "德国雇主签署的劳动合同或具有约束力的 job offer",
+      "德国雇主签署的劳动合同或有约束力的 job offer",
       "职位说明：职责、工作地点、合同期限、周工时",
       "税前年薪证明，确保金额达到对应门槛",
       "雇主填写的 Declaration of Employment / Erklärung zum Beschäftigungsverhältnis",
     ],
   },
   {
+    group: "岗位匹配证明",
+    items: [
+      "岗位职责说明，证明工作需要大学或合格职业培训层级的专业技能",
+      "用 3-5 条要点说明你的学历、同等资格或 IT 经验如何对应岗位职责",
+      "简历，突出与德国岗位相关的学历、项目、技术栈、管理经验或执业经历",
+    ],
+  },
+  {
     group: "学历与资格",
     items: [
-      "大学毕业证、学位证及翻译件",
+      "大学毕业证、学位证及翻译件，或同等高等资格证明",
       "Anabin 学校 H+ 与专业可比性截图，或 ZAB 认证",
-      "简历，突出与德国岗位相关的学历、项目和工作经历",
+      "如为同等高等资格：证明课程至少 3 年且达到 ISCED/EQF 6 级的材料",
     ],
   },
   {
@@ -50,24 +59,36 @@ const conditionalDocuments = {
   lowThreshold: {
     group: "低薪资门槛补充",
     items: [
-      "说明适用低门槛的证据：短缺岗位、新入职者或 IT 经验路径",
+      "说明适用低门槛的证据：短缺职业、IT 岗位、新入职者或无学历 IT 经验路径",
       "准备联邦就业局 BA 可能审核所需的岗位与薪资材料",
     ],
   },
   recentGraduate: {
     group: "毕业三年内",
-    items: ["最高学历毕业日期证明", "能说明当前岗位为入职早期职业阶段的材料", "BA 可能审核所需的岗位与薪资材料"],
+    items: [
+      "最高学历或同等资格取得日期证明",
+      "能说明当前岗位为入职早期职业阶段的材料",
+      "BA 可能审核所需的岗位与薪资材料",
+    ],
   },
   itExperience: {
     group: "无学历 IT 路径",
     items: [
-      "近 7 年内至少 3 年 IT 工作经验证明",
+      "过去 7 年内至少 3 年 IT 工作经验证明",
       "证明经验达到大学水平并且岗位需要该经验的项目、推荐信或职责说明",
+      "能说明你是 IT 专家或 IT 管理者的技术栈、系统、项目或管理职责材料",
     ],
   },
   regulated: {
     group: "受监管职业",
     items: ["德国执业许可，或许可即将获批的正式证明"],
+  },
+  shortage: {
+    group: "短缺职业",
+    items: [
+      "把岗位归入具体短缺职业类别的说明",
+      "雇主职位说明，突出短缺职业类别对应的专业职责",
+    ],
   },
   outside: {
     group: "境外签证申请",
@@ -99,12 +120,13 @@ const money = new Intl.NumberFormat("de-DE", {
 const getData = () => Object.fromEntries(new FormData(form).entries());
 
 function determineThreshold(data) {
-  const lowByOccupation = data.occupation === "shortage";
+  const lowByOccupation = data.occupation === "shortage" || data.occupation === "it";
   const lowByPath = data.path === "recentGraduate" || data.path === "itExperience";
   const lowThreshold = lowByOccupation || lowByPath;
   const reasons = [];
 
-  if (lowByOccupation) reasons.push(lowThresholdReasons.shortage);
+  if (data.occupation === "shortage") reasons.push(lowThresholdReasons.shortage);
+  if (data.occupation === "it") reasons.push(lowThresholdReasons.it);
   if (data.path === "recentGraduate") reasons.push(lowThresholdReasons.recentGraduate);
   if (data.path === "itExperience") reasons.push(lowThresholdReasons.itExperience);
 
@@ -113,6 +135,10 @@ function determineThreshold(data) {
     type: lowThreshold ? "reduced" : "standard",
     reasons,
   };
+}
+
+function hasEducationPath(data) {
+  return ["degree", "equivalentQualification", "recentGraduate"].includes(data.path);
 }
 
 function evaluate(data) {
@@ -137,7 +163,7 @@ function evaluate(data) {
 
   if (data.jobOffer !== "yes") {
     score -= data.jobOffer === "soon" ? 18 : 38;
-    issues.push(data.jobOffer === "soon" ? "还缺少已签署合同或正式 offer。" : "德国蓝卡需要具体德国工作机会。");
+    issues.push(data.jobOffer === "soon" ? "还缺少已签署合同或有约束力 offer。" : "德国蓝卡需要具体德国工作机会。");
   }
 
   if (data.contractMonths !== "6") {
@@ -152,24 +178,24 @@ function evaluate(data) {
     score -= 38;
     issues.push(`当前薪资低于适用门槛 ${money.format(threshold.amount)}。`);
   } else if (salary < THRESHOLDS.standard && threshold.type === "reduced") {
-    issues.push("你使用的是低薪资门槛，通常需要联邦就业局 BA 同意或审核。");
+    issues.push("你使用的是低薪资门槛，短缺职业、新入职者或部分 IT 情形通常需要 BA 同意或审核。");
     nextSteps.push("让雇主准备岗位说明和雇佣条件材料，便于 BA 审核。");
     score -= 6;
   }
 
-  if (data.path === "degree" || data.path === "recentGraduate") {
+  if (hasEducationPath(data)) {
     if (data.degreeStatus === "checking") {
       score -= 12;
-      issues.push("学历认可状态还未确认。");
+      issues.push("学历或同等高等资格认可状态还未确认。");
     }
     if (data.degreeStatus === "notRecognized" || data.degreeStatus === "noDegree") {
       score -= 32;
-      issues.push("大学学历路径需要能证明学历被德国认可或可比。");
+      issues.push("学历或同等高等资格路径需要能证明资格被德国认可或可比。");
     }
   }
 
-  if (data.path === "degree" && data.graduationAge === "within3" && salary >= THRESHOLDS.reduced && salary < THRESHOLDS.standard) {
-    nextSteps.push("你毕业未满 3 年，若年薪低于普通门槛，可评估新入职者低门槛路径。");
+  if (data.path === "equivalentQualification") {
+    nextSteps.push("同等高等资格路径要证明资格至少 3 年且达到 ISCED/EQF 6 级。");
   }
 
   if (data.path === "recentGraduate") {
@@ -180,43 +206,72 @@ function evaluate(data) {
     nextSteps.push("新入职者路径可适用于所有职业类别，但通常需要 BA 同意。");
   }
 
+  if (data.path === "degree" && data.graduationAge === "within3" && salary >= THRESHOLDS.reduced && salary < THRESHOLDS.standard) {
+    nextSteps.push("你毕业未满 3 年，若年薪低于普通门槛，可评估新入职者低门槛路径。");
+  }
+
   if (data.path === "itExperience") {
     if (data.occupation !== "it") {
       score -= 18;
-      issues.push("无学历经验路径通常要求具体 IT 专家岗位。");
+      issues.push("无学历 IT 路径要求德国岗位是 IT 专家或 IT 管理岗位。");
     }
     if (data.itYears !== "3plus") {
       score -= data.itYears === "unknown" ? 16 : 34;
       issues.push("无学历 IT 蓝卡路径要求过去 7 年内至少 3 年 IT 工作经验。");
     }
-    if (data.degreeStatus !== "noDegree" && data.degreeStatus !== "notRecognized") {
-      nextSteps.push("如已有可认可大学学历，也可以同步评估学历路径；学历路径通常不要求最低工作年限。");
+    nextSteps.push("IT 经验材料要说明经验达到大学水平，并且是德国岗位要求的一部分。");
+  }
+
+  if (data.qualifiedJob === "unknown") {
+    score -= 12;
+    issues.push("需要确认这份工作是否属于合格工作：职责是否通常需要大学或合格职业培训层级的专业技能。");
+  }
+  if (data.qualifiedJob === "no" || data.occupation === "notQualified") {
+    score -= 36;
+    issues.push("蓝卡要求合格工作；低技能、简单服务、纯辅助或体力岗位通常不适合蓝卡。");
+  }
+
+  if (data.occupation === "shortage") {
+    if (data.shortageGroup === "none" || data.shortageGroup === "unknown") {
+      score -= 10;
+      issues.push("如果按短缺职业使用低门槛，需要能把岗位归入具体短缺职业类别。");
     }
-    if (data.degreeStatus !== "noDegree") {
-      nextSteps.push("IT 经验材料要说明经验达到大学水平，并且是德国岗位要求的一部分。");
+    nextSteps.push("短缺职业低门槛通常需要 BA 同意，岗位类别和职责说明要写清楚。");
+  }
+
+  if (data.occupation === "regulated" || data.license !== "notNeeded") {
+    if (data.license === "missing") {
+      score -= 30;
+      issues.push("受监管职业需要执业许可已取得或至少可预期取得。");
+    }
+    if (data.license === "unknown") {
+      score -= 14;
+      issues.push("请先确认该岗位是否属于受监管职业，以及是否需要德国执业许可。");
+    }
+    if (data.license === "ready") {
+      nextSteps.push("把执业许可或许可承诺放进核心材料包。");
     }
   }
 
-  if (data.jobMatch === "partial") {
-    score -= 10;
-    issues.push("岗位与学历或 IT 经验的匹配关系需要写清楚。");
+  if (data.jobMatch === "adjacent") {
+    score -= 4;
+    nextSteps.push("相邻匹配通常可行，但建议让雇主职责说明写出岗位需要你的核心专业能力。");
   }
-  if (data.jobMatch === "no") {
-    score -= 30;
-    issues.push("岗位必须与学历或符合条件的 IT 经验相匹配。");
+  if (data.jobMatch === "management") {
+    score -= 4;
+    nextSteps.push("同领域管理通常可解释，建议突出你管理的团队、流程或项目与原专业的关系。");
   }
-
-  if (data.occupation === "regulated" && data.license === "missing") {
-    score -= 30;
-    issues.push("受监管职业需要执业许可已取得或至少可预期取得。");
+  if (data.jobMatch === "weak") {
+    score -= 16;
+    issues.push("岗位与资格或经验关系较弱，需要用职责说明、项目经历或雇主解释补强。");
   }
-
-  if (data.license === "ready") {
-    nextSteps.push("把执业许可或许可承诺放进核心材料包。");
+  if (data.jobMatch === "none") {
+    score -= 34;
+    issues.push("岗位必须与学历、同等资格或符合条件的 IT 经验有清楚关系。");
   }
 
   if (!issues.length) {
-    nextSteps.push("整理合同、学历认可、医疗保险和申请表，按申请地点预约提交。");
+    nextSteps.push("整理合同、资格认可、岗位匹配说明、医疗保险和申请表，按申请地点预约提交。");
     nextSteps.push("提交前再次核对当年薪资门槛和德国使领馆或外管局清单。");
   } else {
     nextSteps.push("先补齐上方风险点，再预约签证或居留申请。");
@@ -234,11 +289,11 @@ function evaluate(data) {
   if (normalizedScore < 60) {
     status = "danger";
     title = "目前不建议按蓝卡提交";
-    summary = "存在影响资格的关键问题，建议先补齐工作、薪资或资格证明。";
+    summary = "存在影响资格的关键问题，建议先补齐工作、薪资、资格证明或岗位匹配证据。";
   } else if (normalizedScore < 82 || issues.length) {
     status = "warn";
     title = "可能具备条件，但仍有待确认项";
-    summary = "你接近或满足核心条件，但仍需处理低门槛、学历认可、执业许可或合同细节。";
+    summary = "你接近或满足核心条件，但仍需处理低门槛、岗位匹配、资格认可、执业许可或合同细节。";
   }
 
   return {
@@ -288,6 +343,7 @@ function buildDocuments(data) {
   if (threshold.type === "reduced") groups.push(conditionalDocuments.lowThreshold);
   if (data.path === "recentGraduate") groups.push(conditionalDocuments.recentGraduate);
   if (data.path === "itExperience") groups.push(conditionalDocuments.itExperience);
+  if (data.occupation === "shortage") groups.push(conditionalDocuments.shortage);
   if (data.occupation === "regulated" || data.license !== "notNeeded") groups.push(conditionalDocuments.regulated);
   if (data.location === "outside") groups.push(conditionalDocuments.outside);
 
