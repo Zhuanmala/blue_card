@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="慕尼黑德国蓝卡个人资格评估与材料准备页面，针对舞台设计助理岗位。"
+    />
+    <title>慕尼黑蓝卡个人评估：舞台设计助理</title>
+    <link rel="stylesheet" href="styles-blank.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">DE</span>
+        <div>
+          <p class="eyebrow">Munich EU Blue Card</p>
+          <h1>舞台设计助理蓝卡申请评估</h1>
+        </div>
+      </div>
+      <nav class="top-actions" aria-label="页面导航">
+        <a href="#summary">结论</a>
+        <a href="#intake">信息收集</a>
+        <a href="#documents">材料</a>
+        <a href="#sources">来源</a>
+        <button id="printBtn" type="button">打印</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="status-pill">专为她当前情况设计：慕尼黑外管局 + 巴伐利亚国立歌剧院</p>
+          <h2>把不确定信息补齐，就能判断她是否适合尽快申请德国蓝卡。</h2>
+          <p>
+            页面不预填任何个人事实。她需要自己确认薪资、毕业时间、岗位职责、学历认可、当前居留和慕尼黑材料要求；每条条件和材料都附官方来源链接。
+          </p>
+        </div>
+        <div class="threshold-panel" aria-label="2026 年薪资门槛">
+          <div>
+            <span>她的年薪</span>
+            <strong>待填写</strong>
+            <small>填写合同税前年薪后自动判断</small>
+          </div>
+          <div>
+            <span>2026 低门槛</span>
+            <strong>€45,934.20</strong>
+            <small>毕业三年内新入职者，通常需 BA 同意</small>
+          </div>
+          <div>
+            <span>2026 普通门槛</span>
+            <strong>€50,700</strong>
+            <small>填写年薪后自动比较</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice" role="note">
+        <strong>使用方式：</strong>
+        让她逐项确认下方信息。只要某项选择“没有/不确定”，右侧结论和材料清单会自动更新。此页面是准备辅助，不替代慕尼黑外管局或 BA 的正式决定。
+      </section>
+
+      <section class="summary" id="summary">
+        <div class="section-title">
+          <p class="eyebrow">Current Assessment</p>
+          <h2>基于她填写信息的实时判断</h2>
+        </div>
+        <div class="summary-grid">
+          <article class="verdict-card" id="verdictCard">
+            <p class="eyebrow">Result</p>
+            <h3 id="verdictTitle">等待信息确认</h3>
+            <p id="verdictText">填写或确认信息后，这里会显示她的申请策略。</p>
+            <div class="meter" aria-label="准备程度"><span id="meterBar"></span></div>
+          </article>
+          <article>
+            <h3>推荐路径</h3>
+            <p>
+              如果她的年薪低于普通门槛但达到低门槛，则需要确认是否能走“毕业三年内新入职者”或其他低门槛路径，并准备 BA 审核材料。
+            </p>
+            <a class="source-link" href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源：慕尼黑 EU Blue Card 条件</a>
+          </article>
+          <article>
+            <h3>最大风险</h3>
+            <p>
+              “舞台设计助理”头衔可能被误解为普通助理。她需要亲自确认岗位说明能证明这是需要舞台设计/戏剧空间设计高等专业能力的合格工作。
+            </p>
+            <a class="source-link" href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源：岗位须匹配资格</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="workspace" id="intake">
+        <form id="caseForm" class="form-panel">
+          <div class="section-title">
+            <p class="eyebrow">Step 1</p>
+            <h2>请她确认这些关键事实</h2>
+            <p>这些不是泛泛问题，全部对应慕尼黑蓝卡审核条件或材料项。</p>
+          </div>
+
+          <div id="questions" class="question-list"></div>
+
+          <div class="button-row">
+            <button type="button" class="primary" id="saveBtn">保存当前填写</button>
+            <button type="button" id="resetBtn">清空填写</button>
+          </div>
+        </form>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="result-list">
+            <h3>当前结论</h3>
+            <ul id="findingsList"></ul>
+          </div>
+          <div class="result-list">
+            <h3>必须马上处理</h3>
+            <ul id="actionsList"></ul>
+          </div>
+          <div class="result-list">
+            <h3>HR 岗位说明关键词</h3>
+            <ul>
+              <li>requires higher education in stage design, scenography, theatre space design or related field</li>
+              <li>prepares stage, set, prop and theatre-space design documents</li>
+              <li>coordinates design implementation with directors, stage designers, workshops and technical departments</li>
+              <li>participates in rehearsals, technical rehearsals and stage-change planning</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <section class="documents" id="documents">
+        <div class="section-title">
+          <p class="eyebrow">Documents</p>
+          <h2>她的慕尼黑蓝卡材料清单</h2>
+          <p>每项后面都有来源。勾选会保存在当前浏览器。</p>
+        </div>
+        <div class="doc-toolbar">
+          <button type="button" id="copyChecklistBtn">复制清单</button>
+          <button type="button" id="clearChecksBtn">清空勾选</button>
+        </div>
+        <div id="documentList" class="doc-list"></div>
+      </section>
+
+      <section class="strategy" id="strategy">
+        <div class="section-title">
+          <p class="eyebrow">Submission Strategy</p>
+          <h2>建议提交策略</h2>
+        </div>
+        <ol class="strategy-list">
+          <li>
+            先尽快向慕尼黑外管局在线提交或发出申请，确保在毕业三年窗口内留下提交记录。
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源</a>
+          </li>
+          <li>
+            让 HR 同时准备合同、岗位详细说明、`Declaration of employment` 和 `insurance for the exercise of employment`。
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源</a>
+          </li>
+          <li>
+            岗位说明必须把“助理”解释成专业舞台设计岗位的设计执行与剧场制作职责，而不是行政或低技能辅助。
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源</a>
+          </li>
+          <li>
+            如果外管局要求补材料，按其要求补交；慕尼黑页面说明个案中可能要求更多材料，处理时间可到 7 个月。
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源</a>
+          </li>
+        </ol>
+      </section>
+
+      <section class="sources" id="sources">
+        <div class="section-title">
+          <p class="eyebrow">Sources</p>
+          <h2>官方来源</h2>
+        </div>
+        <ul>
+          <li>
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">
+              Landeshauptstadt München: EU Blue Card
+            </a>
+          </li>
+          <li>
+            <a href="https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card" target="_blank" rel="noreferrer">
+              Make it in Germany: EU Blue Card
+            </a>
+          </li>
+          <li>
+            <a href="https://anabin.kmk.org/" target="_blank" rel="noreferrer">anabin</a>
+          </li>
+          <li>
+            <a href="https://www.kmk.org/zab/central-office-for-foreign-education/certificate-assessment.html" target="_blank" rel="noreferrer">
+              KMK/ZAB Certificate Assessment
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>最后信息核对：2026-05-25。请以慕尼黑外管局最终要求为准。</p>
+    </footer>
+
+    <script src="app-blank.js"></script>
+  </body>
+</html>
