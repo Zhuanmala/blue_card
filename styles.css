@@ -206,6 +206,8 @@ main {
 .notice,
 .rules,
 .guide,
+.summary,
+.strategy,
 .sources,
 footer {
   padding: 18px 20px;
@@ -224,6 +226,64 @@ footer {
 
 .guide {
   margin-top: 22px;
+}
+
+.summary,
+.strategy {
+  margin-top: 22px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.9fr) minmax(240px, 0.9fr);
+  gap: 14px;
+}
+
+.summary-grid article,
+.strategy-list {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.summary-grid h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.summary-grid p,
+.strategy-list li {
+  color: var(--muted);
+}
+
+.verdict-card.ok {
+  border-color: rgba(8, 116, 67, 0.35);
+  background: rgba(8, 116, 67, 0.08);
+}
+
+.verdict-card.warn {
+  border-color: rgba(180, 83, 9, 0.35);
+  background: rgba(180, 83, 9, 0.08);
+}
+
+.verdict-card.danger {
+  border-color: rgba(180, 35, 24, 0.35);
+  background: rgba(180, 35, 24, 0.08);
+}
+
+.source-link,
+.question-meta a,
+.doc-group a,
+.strategy-list a {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 10px;
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .rules-grid {
@@ -412,6 +472,38 @@ a:focus-visible {
   margin-top: 20px;
 }
 
+.question-list {
+  display: grid;
+  gap: 14px;
+}
+
+.question-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.question-card label {
+  font-size: 17px;
+}
+
+.question-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.question-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .score-card {
   padding: 18px;
   border-radius: 8px;
@@ -543,6 +635,15 @@ a:focus-visible {
   font-weight: 500;
 }
 
+.doc-group label span {
+  flex: 1;
+}
+
+.doc-group label a {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
 .doc-group label:last-child {
   border-bottom: 0;
 }
@@ -571,10 +672,20 @@ footer p {
   margin: 0;
 }
 
+.strategy-list {
+  margin: 0;
+  padding-left: 36px;
+}
+
+.strategy-list li + li {
+  margin-top: 12px;
+}
+
 @media (max-width: 880px) {
   .topbar,
   .hero,
-  .workspace {
+  .workspace,
+  .summary-grid {
     grid-template-columns: 1fr;
   }
 

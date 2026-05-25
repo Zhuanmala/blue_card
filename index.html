@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="德国欧盟蓝卡资格自测与申请材料准备助手，基于 2026 年公开官方信息。"
+      content="慕尼黑德国蓝卡个人资格评估与材料准备页面，针对舞台设计助理岗位。"
     />
-    <title>德国蓝卡资格自测与材料助手</title>
+    <title>慕尼黑蓝卡个人评估：舞台设计助理</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -15,366 +15,123 @@
       <div class="brand">
         <span class="brand-mark" aria-hidden="true">DE</span>
         <div>
-          <p class="eyebrow">德国 EU Blue Card</p>
-          <h1>蓝卡资格自测与材料助手</h1>
+          <p class="eyebrow">Munich EU Blue Card</p>
+          <h1>舞台设计助理蓝卡申请评估</h1>
         </div>
       </div>
-      <nav class="top-actions" aria-label="页面操作">
-        <a href="#rules">先看规则</a>
-        <a href="#checker">开始自测</a>
-        <a href="#documents">材料清单</a>
-        <button id="printBtn" type="button">打印结果</button>
+      <nav class="top-actions" aria-label="页面导航">
+        <a href="#summary">结论</a>
+        <a href="#intake">信息收集</a>
+        <a href="#documents">材料</a>
+        <a href="#sources">来源</a>
+        <button id="printBtn" type="button">打印</button>
       </nav>
     </header>
 
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <p class="status-pill">已按 2026 年德国蓝卡薪资门槛更新</p>
-          <h2>不查资料，也能一步步判断自己是否适合申请德国蓝卡。</h2>
+          <p class="status-pill">专为她当前情况设计：慕尼黑外管局 + 巴伐利亚国立歌剧院</p>
+          <h2>把不确定信息补齐，就能判断她是否适合尽快申请德国蓝卡。</h2>
           <p>
-            页面把蓝卡资格拆成身份、合同、薪资、资格路径、岗位匹配和特殊许可。每个问题都写明选择标准和例子，适合第一次了解蓝卡的人使用。
+            页面基于你们目前提供的信息预填，重点验证低薪资门槛、毕业三年内窗口、岗位专业性、学历匹配和慕尼黑材料要求。每条条件和材料都附官方来源链接。
           </p>
         </div>
         <div class="threshold-panel" aria-label="2026 年薪资门槛">
           <div>
-            <span>普通岗位</span>
-            <strong>€50,700</strong>
-            <small>2026 年税前年薪</small>
+            <span>她的已知年薪</span>
+            <strong>€46,800</strong>
+            <small>€3,900 × 12，税前年薪</small>
           </div>
           <div>
-            <span>低门槛情形</span>
+            <span>2026 低门槛</span>
             <strong>€45,934.20</strong>
-            <small>短缺职业 / 毕业三年内 / 无学历 IT 经验路线</small>
+            <small>毕业三年内新入职者，通常需 BA 同意</small>
+          </div>
+          <div>
+            <span>2026 普通门槛</span>
+            <strong>€50,700</strong>
+            <small>她目前未达到普通门槛</small>
           </div>
         </div>
       </section>
 
       <section class="notice" role="note">
-        <strong>重要提示：</strong>
-        本工具用于申请准备和自查，不构成法律意见，也不能替代德国使领馆、外管局或联邦就业局的正式审核。规则会按年份和个案变化，提交前请复核官方来源。
+        <strong>使用方式：</strong>
+        让她逐项确认下方信息。只要某项选择“没有/不确定”，右侧结论和材料清单会自动更新。此页面是准备辅助，不替代慕尼黑外管局或 BA 的正式决定。
       </section>
 
-      <section class="rules" id="rules">
+      <section class="summary" id="summary">
         <div class="section-title">
-          <p class="eyebrow">Eligibility Map</p>
-          <h2>蓝卡资格先看这 5 件事</h2>
-          <p>全部基本满足，才建议进入材料准备；任何一项不清楚，都应该先补证据。</p>
+          <p class="eyebrow">Current Assessment</p>
+          <h2>基于已知信息的初步判断</h2>
         </div>
-        <div class="rules-grid five">
-          <article>
-            <h3>1. 身份</h3>
-            <p>蓝卡主要面向非欧盟、非欧洲经济区、非瑞士公民。欧盟公民通常不需要蓝卡。</p>
+        <div class="summary-grid">
+          <article class="verdict-card" id="verdictCard">
+            <p class="eyebrow">Result</p>
+            <h3 id="verdictTitle">等待信息确认</h3>
+            <p id="verdictText">填写或确认信息后，这里会显示她的申请策略。</p>
+            <div class="meter" aria-label="准备程度"><span id="meterBar"></span></div>
           </article>
           <article>
-            <h3>2. 德国工作</h3>
-            <p>需要德国公司的具体工作合同或有约束力的 offer，雇佣期通常至少 6 个月。</p>
-          </article>
-          <article>
-            <h3>3. 合格工作</h3>
-            <p>工作本身要需要大学学习或合格职业培训获得的技能，不应是纯体力、简单助理或低技能岗位。</p>
-          </article>
-          <article>
-            <h3>4. 资格匹配</h3>
-            <p>岗位职责要和你的学历、同等资格，或无学历 IT 路线的 IT 经验有清楚关联。</p>
-          </article>
-          <article>
-            <h3>5. 薪资达标</h3>
-            <p>2026 年普通门槛为 €50,700；低门槛为 €45,934.20，低门槛情形通常需要 BA 审核。</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="guide" id="job-guide">
-        <div class="section-title">
-          <p class="eyebrow">Job Guide</p>
-          <h2>“工作是否匹配资格或经验”怎么判断？</h2>
-          <p>先判断工作是不是合格工作，再判断它和你的资格是否相关。</p>
-        </div>
-        <div class="guide-grid">
-          <article>
-            <h3>通常算匹配</h3>
-            <ul>
-              <li>计算机学历 → 软件工程师、数据工程师、系统架构师、IT 项目经理</li>
-              <li>机械或电气工程学历 → 机械工程师、电气工程师、质量工程师、生产工程师</li>
-              <li>数学、统计、物理学历 → 数据科学、量化分析、算法、工程研发</li>
-              <li>护理、医学、药学、教育学历 → 对应专业岗位，但通常还要执业许可</li>
-              <li>商科、金融、经济学历 → 财务分析、商业分析、合规、审计、供应链或同领域管理</li>
-            </ul>
-          </article>
-          <article>
-            <h3>可能匹配，但要解释</h3>
-            <ul>
-              <li>专业不完全相同，但工作使用同一类核心能力，例如物理学历做数据科学</li>
-              <li>从专业岗位转为同领域管理，例如工程师转工程经理</li>
-              <li>跨到相邻领域，例如自动化、质量、产品、技术咨询，需要职责说明支撑</li>
-            </ul>
-          </article>
-          <article>
-            <h3>通常不适合蓝卡</h3>
-            <ul>
-              <li>岗位主要是收银、仓储搬运、普通客服、餐饮服务、司机、简单文员</li>
-              <li>工作职责不需要大学或合格职业培训层级的知识</li>
-              <li>学历或 IT 经验与岗位几乎无关，无法解释为什么雇主需要你的专业资格</li>
-            </ul>
-          </article>
-          <article>
-            <h3>短缺职业不是唯一选择</h3>
+            <h3>推荐路径</h3>
             <p>
-              普通蓝卡不要求必须是短缺职业。短缺职业的主要作用是允许使用较低薪资门槛。短缺职业包括 STEM 专业人员、ICT 服务经理、制造/采矿/建筑/分销经理、专业服务经理、建筑/规划/交通规划专业人员、医生、兽医、牙医、药剂师、学术或同等护理与助产专业人员、教师和教育工作者等。
+              按“毕业三年内新入职者”的低薪资门槛申请。她的工资满足 2026 低门槛，但不满足普通门槛，所以必须在毕业三年窗口内尽快提交。
             </p>
+            <a class="source-link" href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源：慕尼黑 EU Blue Card 条件</a>
+          </article>
+          <article>
+            <h3>最大风险</h3>
+            <p>
+              “舞台设计助理”头衔可能被误解为普通助理。材料要证明该岗位需要舞台设计/戏剧空间设计的高等专业能力，并且与她的 Diplom 匹配。
+            </p>
+            <a class="source-link" href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源：岗位须匹配资格</a>
           </article>
         </div>
       </section>
 
-      <section class="workspace" id="checker">
-        <form id="blueCardForm" class="form-panel">
+      <section class="workspace" id="intake">
+        <form id="caseForm" class="form-panel">
           <div class="section-title">
             <p class="eyebrow">Step 1</p>
-            <h2>身份、合同和薪资</h2>
+            <h2>请她确认这些关键事实</h2>
+            <p>这些不是泛泛问题，全部对应慕尼黑蓝卡审核条件或材料项。</p>
           </div>
 
-          <fieldset>
-            <legend>你的国籍身份</legend>
-            <label class="choice">
-              <input type="radio" name="citizenship" value="nonEu" checked />
-              <span><strong>非欧盟 / 非欧洲经济区 / 非瑞士公民</strong><small>蓝卡通常面向这一类申请人。</small></span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="citizenship" value="eu" />
-              <span><strong>欧盟、欧洲经济区或瑞士公民</strong><small>通常不需要申请德国蓝卡。</small></span>
-            </label>
-          </fieldset>
-
-          <div class="grid-two">
-            <label>
-              德国工作合同或正式 offer
-              <select name="jobOffer">
-                <option value="yes">已有已签合同或有约束力 offer</option>
-                <option value="soon">正在谈，还没签</option>
-                <option value="no">没有德国工作机会</option>
-              </select>
-              <small>蓝卡不能只凭求职意向申请，需要具体德国雇主。</small>
-            </label>
-            <label>
-              合同期限
-              <select name="contractMonths">
-                <option value="6">至少 6 个月</option>
-                <option value="1">少于 6 个月</option>
-                <option value="0">不确定</option>
-              </select>
-              <small>德国蓝卡的工作期限通常至少 6 个月。</small>
-            </label>
-          </div>
-
-          <div class="grid-two">
-            <label>
-              税前年薪 EUR
-              <input
-                type="number"
-                name="salary"
-                min="0"
-                step="100"
-                placeholder="例如 52000"
-                inputmode="decimal"
-              />
-              <small>填合同里的税前年薪，不是税后收入。</small>
-            </label>
-            <label>
-              申请地点
-              <select name="location">
-                <option value="outside">德国境外申请签证</option>
-                <option value="inside">德国境内换发居留</option>
-                <option value="unknown">还不确定</option>
-              </select>
-              <small>材料清单会按申请地点补充。</small>
-            </label>
-          </div>
-
-          <div class="section-title compact">
-            <p class="eyebrow">Step 2</p>
-            <h2>你用哪条资格路径？</h2>
-          </div>
-
-          <fieldset>
-            <legend>选择最符合你的路径</legend>
-            <label class="choice">
-              <input type="radio" name="path" value="degree" checked />
-              <span><strong>大学学历路径</strong><small>有德国认可或可比的大学学历，这是最常见路线。</small></span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="path" value="equivalentQualification" />
-              <span><strong>同等高等资格路径</strong><small>非传统大学学历，但至少 3 年、达到 ISCED/EQF 6 级，例如部分高级职业资格。</small></span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="path" value="recentGraduate" />
-              <span><strong>毕业三年内新入职者</strong><small>学历或同等资格取得不超过 3 年，可用低薪资门槛，通常需要 BA 同意。</small></span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="path" value="itExperience" />
-              <span><strong>无学历 IT 专家路径</strong><small>过去 7 年内至少 3 年大学水平 IT 经验，且德国岗位需要该经验。</small></span>
-            </label>
-          </fieldset>
-
-          <div class="grid-two">
-            <label>
-              学历或高等资格认可状态
-              <select name="degreeStatus">
-                <option value="recognized">已确认认可或可比</option>
-                <option value="checking">正在查 Anabin / ZAB / 等级</option>
-                <option value="notRecognized">无法证明认可或可比</option>
-                <option value="noDegree">没有大学学历或同等高等资格</option>
-              </select>
-              <small>学历路线要证明德国认可或可比；IT 经验路线可不走学历。</small>
-            </label>
-            <label>
-              最高学历或同等资格取得时间
-              <select name="graduationAge">
-                <option value="over3">超过 3 年或不适用</option>
-                <option value="within3">3 年内</option>
-                <option value="unknown">不确定</option>
-              </select>
-              <small>只有新入职者低门槛路径需要重点看这个。</small>
-            </label>
-          </div>
-
-          <div class="section-title compact">
-            <p class="eyebrow">Step 3</p>
-            <h2>德国岗位属于什么类型？</h2>
-          </div>
-
-          <div class="grid-two">
-            <label>
-              这份工作是否是“合格工作”？
-              <select name="qualifiedJob">
-                <option value="yes">是，通常需要大学学历或合格职业培训层级技能</option>
-                <option value="unknown">不确定，我看不出岗位要求</option>
-                <option value="no">不是，主要是低技能、简单服务或辅助工作</option>
-              </select>
-              <small>合格工作指需要较高专业知识的岗位，不只是职位名称好听。</small>
-            </label>
-            <label>
-              岗位类别
-              <select name="occupation">
-                <option value="standard">普通合格岗位：不属于下列特殊类别</option>
-                <option value="shortage">短缺职业：见下方清单，可能用低薪资门槛</option>
-                <option value="it">IT 专家或 IT 管理岗位</option>
-                <option value="regulated">受监管职业：医生、护士、教师、药剂师等</option>
-                <option value="notQualified">不确定或看起来不是合格岗位</option>
-              </select>
-              <small>不是短缺职业也可以申请，只是通常适用普通薪资门槛。</small>
-            </label>
-          </div>
-
-          <label class="full-row">
-            如果你认为是短缺职业，最接近哪一类？
-            <select name="shortageGroup">
-              <option value="none">不适用 / 我不是按短缺职业判断</option>
-              <option value="stem">STEM：数学、IT、自然科学、工程等学术专业人员</option>
-              <option value="ictManager">ICT 服务经理或 IT 管理者</option>
-              <option value="industrialManager">制造、采矿、建筑、分销经理</option>
-              <option value="professionalServicesManager">专业服务经理：儿童照护、健康、教育等</option>
-              <option value="architecturePlanning">建筑、空间规划、交通规划专业人员</option>
-              <option value="medical">医生、兽医、牙医、药剂师</option>
-              <option value="nursingMidwifery">学术或同等护理与助产专业人员</option>
-              <option value="education">学校或校外教师、教育工作者</option>
-              <option value="unknown">不确定，但怀疑属于短缺职业</option>
-            </select>
-            <small>低门槛短缺职业通常需要 BA 同意。选不准时，按普通门槛更保守。</small>
-          </label>
-
-          <fieldset>
-            <legend>岗位和你的资格/经验是什么关系？</legend>
-            <label class="choice">
-              <input type="radio" name="jobMatch" value="direct" checked />
-              <span><strong>直接匹配</strong><small>专业和岗位基本一致，例如计算机学历做软件工程师。</small></span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="jobMatch" value="adjacent" />
-              <span><strong>相邻匹配</strong><small>不是同名专业，但使用同类核心能力，例如数学/物理做数据科学。</small></span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="jobMatch" value="management" />
-              <span><strong>同领域管理</strong><small>管理与资格同领域的团队、流程或项目，例如工程学历做工程经理。</small></span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="jobMatch" value="weak" />
-              <span><strong>关系较弱，需要解释</strong><small>岗位有专业内容，但专业关联不够直观，需要雇主职责说明支撑。</small></span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="jobMatch" value="none" />
-              <span><strong>基本无关</strong><small>学历或 IT 经验与岗位职责说不出清楚关系。</small></span>
-            </label>
-          </fieldset>
-
-          <div class="grid-two">
-            <label>
-              过去 7 年内 IT 工作经验
-              <select name="itYears">
-                <option value="na">不适用</option>
-                <option value="3plus">至少 3 年</option>
-                <option value="less3">少于 3 年</option>
-                <option value="unknown">不确定</option>
-              </select>
-              <small>只有无学历 IT 路线必须满足这项。</small>
-            </label>
-            <label>
-              受监管职业执业许可
-              <select name="license">
-                <option value="notNeeded">不需要执业许可</option>
-                <option value="ready">已取得或已有明确承诺</option>
-                <option value="missing">需要但尚未取得</option>
-                <option value="unknown">不确定是否需要</option>
-              </select>
-              <small>医生、护士、教师、律师、药剂师等通常要先看许可。</small>
-            </label>
-          </div>
+          <div id="questions" class="question-list"></div>
 
           <div class="button-row">
-            <button type="submit" class="primary">生成判断</button>
-            <button type="button" id="resetBtn">重新填写</button>
+            <button type="button" class="primary" id="saveBtn">保存当前填写</button>
+            <button type="button" id="resetBtn">恢复预填</button>
           </div>
         </form>
 
         <aside class="result-panel" aria-live="polite">
-          <div class="score-card" id="scoreCard">
-            <p class="eyebrow">Result</p>
-            <h2 id="resultTitle">填写信息后生成判断</h2>
-            <p id="resultSummary">结果会显示在这里，包括薪资门槛、岗位匹配风险、BA 审核和材料准备重点。</p>
-          </div>
-
-          <div class="meter" aria-label="准备进度">
-            <span id="meterBar"></span>
-          </div>
-
-          <div class="insight-grid">
-            <div>
-              <span>适用门槛</span>
-              <strong id="thresholdText">待计算</strong>
-            </div>
-            <div>
-              <span>薪资差额</span>
-              <strong id="gapText">待计算</strong>
-            </div>
-          </div>
-
           <div class="result-list">
-            <h3>需要重点处理</h3>
-            <ul id="issuesList"></ul>
+            <h3>当前结论</h3>
+            <ul id="findingsList"></ul>
           </div>
-
           <div class="result-list">
-            <h3>下一步</h3>
-            <ul id="nextStepsList"></ul>
+            <h3>必须马上处理</h3>
+            <ul id="actionsList"></ul>
+          </div>
+          <div class="result-list">
+            <h3>HR 岗位说明关键词</h3>
+            <ul>
+              <li>requires higher education in stage design, scenography, theatre space design or related field</li>
+              <li>prepares stage, set, prop and theatre-space design documents</li>
+              <li>coordinates design implementation with directors, stage designers, workshops and technical departments</li>
+              <li>participates in rehearsals, technical rehearsals and stage-change planning</li>
+            </ul>
           </div>
         </aside>
       </section>
 
       <section class="documents" id="documents">
         <div class="section-title">
-          <p class="eyebrow">Preparation</p>
-          <h2>个性化材料清单</h2>
-          <p>勾选后会保存在当前浏览器，方便你下次继续整理。</p>
+          <p class="eyebrow">Documents</p>
+          <h2>她的慕尼黑蓝卡材料清单</h2>
+          <p>每项后面都有来源。勾选会保存在当前浏览器。</p>
         </div>
         <div class="doc-toolbar">
           <button type="button" id="copyChecklistBtn">复制清单</button>
@@ -383,25 +140,53 @@
         <div id="documentList" class="doc-list"></div>
       </section>
 
-      <section class="sources">
+      <section class="strategy" id="strategy">
+        <div class="section-title">
+          <p class="eyebrow">Submission Strategy</p>
+          <h2>建议提交策略</h2>
+        </div>
+        <ol class="strategy-list">
+          <li>
+            先尽快向慕尼黑外管局在线提交或发出申请，确保在毕业三年窗口内留下提交记录。
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源</a>
+          </li>
+          <li>
+            让 HR 同时准备合同、岗位详细说明、`Declaration of employment` 和 `insurance for the exercise of employment`。
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源</a>
+          </li>
+          <li>
+            岗位说明必须把“助理”解释成专业舞台设计岗位的设计执行与剧场制作职责，而不是行政或低技能辅助。
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源</a>
+          </li>
+          <li>
+            如果外管局要求补材料，按其要求补交；慕尼黑页面说明个案中可能要求更多材料，处理时间可到 7 个月。
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">来源</a>
+          </li>
+        </ol>
+      </section>
+
+      <section class="sources" id="sources">
         <div class="section-title">
           <p class="eyebrow">Sources</p>
-          <h2>官方信息来源</h2>
+          <h2>官方来源</h2>
         </div>
         <ul>
+          <li>
+            <a href="https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10422541/" target="_blank" rel="noreferrer">
+              Landeshauptstadt München: EU Blue Card
+            </a>
+          </li>
           <li>
             <a href="https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card" target="_blank" rel="noreferrer">
               Make it in Germany: EU Blue Card
             </a>
           </li>
           <li>
-            <a href="https://www.bundesanzeiger.de/pub/publication/REViP4bN6jVdpGxPaiQ/content/REViP4bN6jVdpGxPaiQ/BAnz%20AT%2018.12.2025%20B3.pdf?inline=" target="_blank" rel="noreferrer">
-              Bundesanzeiger: 2026 年蓝卡最低税前年薪公告
-            </a>
+            <a href="https://anabin.kmk.org/" target="_blank" rel="noreferrer">anabin</a>
           </li>
           <li>
-            <a href="https://www.germany.info/resource/blob/2435484/8b7b0fa11193ba17e59c48e0d196ccba/eu-blue-card-data.pdf" target="_blank" rel="noreferrer">
-              German Missions in the United States: EU Blue Card checklist
+            <a href="https://www.kmk.org/zab/central-office-for-foreign-education/certificate-assessment.html" target="_blank" rel="noreferrer">
+              KMK/ZAB Certificate Assessment
             </a>
           </li>
         </ul>
@@ -409,7 +194,7 @@
     </main>
 
     <footer>
-      <p>最后信息核对：2026-05-25。页面仅作自测与材料准备辅助。</p>
+      <p>最后信息核对：2026-05-25。请以慕尼黑外管局最终要求为准。</p>
     </footer>
 
     <script src="app.js"></script>
