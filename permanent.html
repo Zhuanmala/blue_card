@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="德国长期居留和永居资格自测，覆盖 Niederlassungserlaubnis 与 Daueraufenthalt-EU 常见路径。"
+    />
+    <title>德国长居资格自测与材料准备</title>
+    <link rel="stylesheet" href="styles-blank.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">DE</span>
+        <div>
+          <p class="eyebrow">Permanent Residence</p>
+          <h1>德国长居资格自测</h1>
+        </div>
+      </div>
+      <nav class="top-actions" aria-label="页面导航">
+        <a href="#summary">结论</a>
+        <a href="#paths">路径</a>
+        <a href="#intake">自测</a>
+        <a href="#documents">材料</a>
+        <button id="printBtn" type="button">打印</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="status-pill">Niederlassungserlaubnis / Daueraufenthalt-EU</p>
+          <h2>通过问卷判断你适合哪条德国长居路径。</h2>
+          <p>
+            本页不预填任何个人信息。请按当前居留类型、德国居住时间、养老保险、德语、生活来源、住房和材料状态填写，系统会自动判断风险和下一步。
+          </p>
+        </div>
+        <div class="threshold-panel" aria-label="常见时间门槛">
+          <div>
+            <span>蓝卡长居</span>
+            <strong>21 / 27 月</strong>
+            <small>B1 可 21 个月；A1 通常 27 个月</small>
+          </div>
+          <div>
+            <span>技术工人</span>
+            <strong>24 / 36 月</strong>
+            <small>德国毕业可 24 个月；一般技术工人 36 个月</small>
+          </div>
+          <div>
+            <span>Daueraufenthalt-EU</span>
+            <strong>5 年 / 60 月</strong>
+            <small>通常需 5 年合法居留和 60 个月养老保险</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice" role="note">
+        <strong>重要提示：</strong>
+        本工具用于准备和自查，不构成法律意见。不同城市材料清单可能不同；如果在慕尼黑申请，本页优先引用慕尼黑市官方材料页。
+      </section>
+
+      <section class="summary" id="summary">
+        <div class="section-title">
+          <p class="eyebrow">Result</p>
+          <h2>实时判断</h2>
+        </div>
+        <div class="summary-grid">
+          <article class="verdict-card" id="verdictCard">
+            <p class="eyebrow">Assessment</p>
+            <h3 id="verdictTitle">请先填写信息</h3>
+            <p id="verdictText">系统会根据你选择的路径显示是否接近申请条件。</p>
+            <div class="meter" aria-label="准备程度"><span id="meterBar"></span></div>
+          </article>
+          <article>
+            <h3>最可能路径</h3>
+            <p id="bestPathText">填写当前居留类型后显示。</p>
+            <a class="source-link" href="https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit" target="_blank" rel="noreferrer">来源：Make it in Germany</a>
+          </article>
+          <article>
+            <h3>最大风险</h3>
+            <p id="riskText">未填写前不做判断。</p>
+            <a class="source-link" href="https://stadt.muenchen.de/service/info/servicestelle-fur-zuwanderung-und-einburgerung/1080792/" target="_blank" rel="noreferrer">来源：慕尼黑技术工人长居</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="guide" id="paths">
+        <div class="section-title">
+          <p class="eyebrow">Paths</p>
+          <h2>常见长居路径</h2>
+          <p>先看自己属于哪一类，再填写下方问卷。</p>
+        </div>
+        <div class="guide-grid">
+          <article>
+            <h3>蓝卡持有人</h3>
+            <p>持 EU Blue Card 且从事合格工作。通常 27 个月 + A1；若有 B1，可缩短到 21 个月。</p>
+            <a class="source-link" href="https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit" target="_blank" rel="noreferrer">来源</a>
+          </article>
+          <article>
+            <h3>技术工人</h3>
+            <p>持 §18a、§18b 或 §18d 等技术工人/研究居留。通常 3 年；若德国完成学历或职业培训，可缩短到 2 年。</p>
+            <a class="source-link" href="https://stadt.muenchen.de/service/info/servicestelle-fur-zuwanderung-und-einburgerung/1080792/" target="_blank" rel="noreferrer">来源</a>
+          </article>
+          <article>
+            <h3>德国毕业后快速路径</h3>
+            <p>在德国完成高等教育或职业培训后，持技术工人居留工作至少 2 年，且通常需 24 个月养老保险。</p>
+            <a class="source-link" href="https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit" target="_blank" rel="noreferrer">来源</a>
+          </article>
+          <article>
+            <h3>长期居留 EU</h3>
+            <p>Daueraufenthalt-EU 通常要求德国合法居留 5 年、60 个月养老保险、生活来源、德语/社会知识和住房。</p>
+            <a class="source-link" href="https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit" target="_blank" rel="noreferrer">来源</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="workspace" id="intake">
+        <form id="permanentForm" class="form-panel">
+          <div class="section-title">
+            <p class="eyebrow">Questionnaire</p>
+            <h2>逐项填写</h2>
+            <p>不知道就选“不确定”。右侧会把缺口列出来。</p>
+          </div>
+          <div id="questions" class="question-list"></div>
+          <div class="button-row">
+            <button type="button" class="primary" id="saveBtn">保存当前填写</button>
+            <button type="button" id="resetBtn">清空填写</button>
+          </div>
+        </form>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="result-list">
+            <h3>当前结论</h3>
+            <ul id="findingsList"></ul>
+          </div>
+          <div class="result-list">
+            <h3>需要补齐</h3>
+            <ul id="actionsList"></ul>
+          </div>
+        </aside>
+      </section>
+
+      <section class="documents" id="documents">
+        <div class="section-title">
+          <p class="eyebrow">Documents</p>
+          <h2>材料清单</h2>
+          <p>会根据填写路径显示重点材料。每项附来源链接。</p>
+        </div>
+        <div class="doc-toolbar">
+          <button type="button" id="copyChecklistBtn">复制清单</button>
+          <button type="button" id="clearChecksBtn">清空勾选</button>
+        </div>
+        <div id="documentList" class="doc-list"></div>
+      </section>
+
+      <section class="sources" id="sources">
+        <div class="section-title">
+          <p class="eyebrow">Sources</p>
+          <h2>官方来源</h2>
+        </div>
+        <ul>
+          <li><a href="https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit" target="_blank" rel="noreferrer">Make it in Germany: Settlement permit</a></li>
+          <li><a href="https://stadt.muenchen.de/service/info/servicestelle-fur-zuwanderung-und-einburgerung/1080792/" target="_blank" rel="noreferrer">慕尼黑：Niederlassungserlaubnis für Fachkräfte</a></li>
+          <li><a href="https://stadt.muenchen.de/service/info/servicestelle-fur-zuwanderung-und-einburgerung/1080810/" target="_blank" rel="noreferrer">慕尼黑：Niederlassungserlaubnis mit Blauer Karte EU</a></li>
+          <li><a href="https://stadt.muenchen.de/service/info/servicestelle-fur-zuwanderung-und-einburgerung/1064106/" target="_blank" rel="noreferrer">慕尼黑：Niederlassungserlaubnis / Daueraufenthalt-EU</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>最后信息核对：2026-05-31。请以所在地外管局最终要求为准。</p>
+    </footer>
+
+    <script src="permanent.js"></script>
+  </body>
+</html>
